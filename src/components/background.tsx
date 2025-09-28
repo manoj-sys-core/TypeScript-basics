@@ -1,5 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl';
+import './DarkVeil.css';
+
 const vertex = `
 attribute vec2 position;
 void main(){gl_Position=vec4(position,0.0,1.0);}
@@ -72,6 +74,16 @@ void main(){
 }
 `;
 
+type Props = {
+  hueShift?: number;
+  noiseIntensity?: number;
+  scanlineIntensity?: number;
+  speed?: number;
+  scanlineFrequency?: number;
+  warpAmount?: number;
+  resolutionScale?: number;
+};
+
 export default function DarkVeil({
   hueShift = 0,
   noiseIntensity = 0,
@@ -80,11 +92,11 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1
-}) {
-  const ref = useRef(null);
+}: Props) {
+  const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const canvas = ref.current;
-    const parent = canvas.parentElement;
+    const canvas = ref.current as HTMLCanvasElement;
+    const parent = canvas.parentElement as HTMLElement;
 
     const renderer = new Renderer({
       dpr: Math.min(window.devicePixelRatio, 2),

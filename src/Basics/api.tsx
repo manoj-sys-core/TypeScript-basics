@@ -11,7 +11,7 @@ type LocationInfo = {
   name: string;
 };
 
-type apidata = {
+type ApiData = {
   name: string;
   gender: string;
   status: string;
@@ -24,30 +24,30 @@ type apidata = {
 
 export default function GetData() {
   const [inp, setInp] = useState<string>("");
-  const [data, setData] = useState<apidata | null>(null);
+  const [data, setData] = useState<ApiData | null>(null);
   const [load, setLoad] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
-    if (!inp) return; // prevent empty input
+    if (!inp) return;
     setLoad(true);
-    setError(null); // reset previous error
+    setError(null); 
     try {
       const res = await fetch(
         `https://rickandmortyapi.com/api/character/${inp}`
       );
-      if (!res.ok) throw new Error("Character not found"); // handle 404
+      if (!res.ok) throw new Error("Character not found");
       const items = await res.json();
       setData(items);
       console.log(items);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setError(err.message); // safe access
+        setError(err.message); 
       } else {
-        setError(String(err)); // fallback
+        setError(String(err));
       }
     } finally {
-      setTimeout(() => setLoad(false), 500); // optional delay for spinner
+      setTimeout(() => setLoad(false), 500); 
     }
   };
 

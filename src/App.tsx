@@ -1,16 +1,11 @@
 import React from 'react'
-import Hello from './Basics/start'
-import Likes from './Basics/like-rating'
-import Todo from './Basics/todo'
-import GetData from './Basics/api'
+import BasicTabs from './tabs'
 
 const App = () => {
   return (
     <div>
-      <Hello name='Manoj' />
-      <Likes head='TypeScript' content='Gooing gud for now'/>
-      <Todo />
-      <GetData/>
+      <h1 style={{ fontSize:"2rem", margin:"30px", textAlign:"center"}}>TypeScript+MUI+ReactBits</h1>
+      <BasicTabs/>
     </div>
   )
 }

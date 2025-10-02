@@ -1,1 +1,1 @@
-# React + TypeScript -Basics
+# React + TypeScript - Basics
